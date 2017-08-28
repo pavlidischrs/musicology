@@ -1,3 +1,5 @@
+// musicalSymbols.cpp file
+
 #include "musicalSymbols.h"
 
 MusicalSymbols::MusicalSymbols(map<int, vector<vector<int>>> rules) {
