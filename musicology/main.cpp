@@ -1,5 +1,5 @@
 
-// main.cpp file
+//		main.cpp file
 
 #include "rulesClass.h"
 #include "musicalSymbols.h"
