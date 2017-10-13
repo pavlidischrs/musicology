@@ -1,8 +1,0 @@
-﻿  rulesClass.cpp
-  musicalSymbols.cpp
-c:\workspace\projects\musicology\musicology\musicalsymbols.cpp(104): warning C4018: '<=': signed/unsigned mismatch
-c:\workspace\projects\musicology\musicology\musicalsymbols.cpp(165): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  main.cpp
-  Generating Code...
-  musicology.vcxproj -> C:\Workspace\projects\musicology\Debug\musicology.exe
-  musicology.vcxproj -> C:\Workspace\projects\musicology\Debug\musicology.pdb (Full PDB)
