@@ -1,2 +1,8 @@
 #Visual Studio files
 *.opendb
+*.db
+*.sln
+
+#Debug-Release Directories
+
+Debug/
