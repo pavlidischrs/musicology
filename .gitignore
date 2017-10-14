@@ -13,3 +13,6 @@
 #Debug-Release Directories
 
 musicology/Debug/
+musicology/musicology.vcxproj.filters
+musicology/musicology.vcxproj
+musicology/rsc/100.png
