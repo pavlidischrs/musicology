@@ -1,5 +1,5 @@
 
-# Musicology Application.
+# Musicology Application
 
 This project would be an application for giving musicological exercises to the user.
 
@@ -9,6 +9,7 @@ It produces Sequences of Musical Symbols with gaps and the young musician must f
 
 **Note!** Currently, the rules for the musical notes and the images are chosen randomly! 
 
+**This is the base for the BACN END of the application with some visualisation features.**
 
 
 # TODO list!
