@@ -1,20 +1,11 @@
 
 # Musicology Application
 
-This project would be an application for giving musicological exercises to the user.
+In this repository you will find an application for exercising in Counterpoint. A **Counterpoint System** consists of two pentagrams, where the lower pentagram is filled with a Sequence of Musical Notes and the upper pentagram is empty. The musicologist-user has to fill the upper pentagram with the right Musical Notes according to musicological rules.
 
-It produces Sequences of Musical Symbols with gaps and the young musician must fill them correctly.
+![1](readmeImage.png "Image")
 
-**Note!** The current implementation is a demo and uses OpenCV to make the visualisation of the exercise!
-
-**Note!** Currently, the rules for the musical notes and the images are chosen randomly! 
-
-**This is the base for the BACN END of the application with some visualisation features.**
+**Note!** Currently, the rules are imaginary so you can see a demo of the app to check the workflow.
 
 
-# TODO list!
-* Add the GUI
-* Parametrise the exercise creation to create various sequence of different difficulties
-* Contact my musician friend and take the real Rules and Notes
-
-
+Go to [/musicology](/musicology) for more details

@@ -1,11 +1,22 @@
 /// <summary>
 /// 
-/// In this file we read the rules of the valid Musical Note Sequences
+/// This class is used to read the rules
 /// 
-/// The Rules are stored in a Map where its key of the Map (a number which corresponds to Musical Note)
-/// matches to a vector. This vector contains all the rules of the Musical Note. 
-/// Each rule is another vector as well, where each position has a number (which corresponds to a note).
-/// 
+/// Currently the rules are organised as following.
+///
+///
+/// We are on the Level 1 of Counterpoint i.e we put a Musical Symbol in a postion according to the Musical Symbol in the below position.
+/// So, we only care about the below symbol.
+///
+/// We have a "rules" file where we store the rules. In this file you can see a column of numbers separated with empty lines.
+/// Note, each number represents a Musical Note and it is the Note's ID. So what we see in the document is IDs.
+///
+/// The last two numbers of each batch are the Musical Symbols (we see IDs in our case)
+/// that are valid to be entered
+/// if in the lower pentagram we have a Musical Symbol, which has an ID equal to the first number of the batch.
+///
+/// So, imagine that the first number is the below symbol and the next numbers are the symbols that could be entered
+/// in the upper pentagram (i.e the rules).
 /// 
 /// </summary>
 
@@ -41,7 +52,7 @@ public:
 	/// since the printRules() [without arguments] can print the read rules.
 	/// </summary>
 	/// <param name="globalRules">The given rules</param>
-	void printRules(map<int, vector<vector<int>>> globalRules);
+    void printRules(map<int, vector<int>> globalRules);
 
 
 
@@ -49,7 +60,7 @@ public:
 	/// Returns the read rules!
 	/// </summary>
 	/// <returns></returns>
-	map<int, vector<vector<int>>> getRulesMap() {
+    map<int, vector<int>> getRulesMap() {
 		return globalRules_;
 	}
 
@@ -70,7 +81,7 @@ private:
 
 
 	// In this variable we will store the rules for is musical Symbol
-	map<int, vector<vector<int>>> globalRules_;
+    map<int, vector<int>> globalRules_;
 
 	// Path for the rules file
 	string pathToRulesFile_;

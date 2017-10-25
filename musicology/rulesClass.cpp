@@ -27,30 +27,21 @@ bool RulesClass::readRules () {
 	int keyNote;
 
 
-	
 	if (myfile.is_open()) {
 
-		// Read the Note for which you will read its rules
+        // Read the Musical Note for which you will read its rules
 		while (myfile >> keyNote) {
 
-			vector<vector<int>> keyRules;	// Vector for storing all the rules of a Note
+            vector<int> keyRules;	// Vector for storing all the rules of a Note
 
-			// Read the rules of the Note
-			for (int i = 0; i < 3; i++) {
-
-				vector<int> tempVector; // Vector for storing a rule 
-
-				// Read the sequence which can be follow after the keyNote
-				for (int j = 0; j < 2; j++) {
-					int temp;	// Temp note
-					myfile >> temp;
-					tempVector.push_back(temp);
-				}
-				// Insert a single rule
-				keyRules.push_back(tempVector);
+            // Read the rules of the Note. (We have two in our current implementation)
+            for (int i = 0; i < 2; i++) {
+                int temp;	// Temp note
+                myfile >> temp;
+                keyRules.push_back(temp);
 			}
 			// Insert all the rules for the Note-key
-			globalRules_.insert(pair<int, vector<vector<int>>>(keyNote, keyRules));
+            globalRules_.insert(pair<int, vector<int>>(keyNote, keyRules));
 		}
 		myfile.close();
 
@@ -71,33 +62,29 @@ void RulesClass::printRules() {
 	for (auto it = globalRules_.begin(); it != globalRules_.end(); ++it) {
 
 		cout << it->first << endl;
-		vector<vector<int>> temp = it->second;
+        vector<int> temp = it->second;
 
 		for (auto it1 = temp.begin(); it1 != temp.end(); it1++) {
 
-			for (auto it2 = it1->begin(); it2 != it1->end(); it2++) {
-				cout << *it2 << " ";
-			}
+            cout << *it1 << " ";
 
-			cout << endl;
+            cout << endl;
 		}
 
 		cout << endl;
 	}
 }
 
-void RulesClass::printRules(map<int, vector<vector<int>>>) {
+void RulesClass::printRules(map<int, vector<int>>) {
 
 	for (auto it = globalRules_.begin(); it != globalRules_.end(); ++it) {
 
 		cout << it->first << endl;
-		vector<vector<int>> temp = it->second;
+        vector<int> temp = it->second;
 
 		for (auto it1 = temp.begin(); it1 != temp.end(); it1++) {
 
-			for (auto it2 = it1->begin(); it2 != it1->end(); it2++) {
-				cout << *it2 << " ";
-			}
+            cout << *it1 << " ";
 
 			cout << endl;
 		}

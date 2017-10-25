@@ -1,0 +1,24 @@
+Moik: 	1. How to produce the lower sequence? What algorithm to use? Should I choose a sequence 
+	   randomly or there are rules for this case as well?
+	2. How 	to make the choice?
+
+
+
+
+    QUESTIONS
+
+1. How to catch a click:
+
+        - With events
+        - QGraphicsItem::ItemIsFocusable
+
+
+    ANSWERS
+
+1. First Things:
+
+        - robot example
+        - search on goole qt how to inherit a class
+
+
+

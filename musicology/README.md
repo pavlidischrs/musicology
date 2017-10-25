@@ -1,18 +1,46 @@
+# Getting Started
 
-# Algorithm Description
+### Algorithm Description
 
-In our implementation each **Musical Symbol** corresponds to a **number**. 
+Each Musical Symbol in our implementation has an **ID**. Currently we have 10 Musical Notes so IDs are from 0 to 9. 
 
-As you can see in **src/rules.txt** each number (Musical Note) has some other numbers (Musical Notes) below, which are the rules of this number (Musical Note). The current chosen rules are 2 for each note and have length 2. 
-**Note**, each note could have one or more rules of different lengths. We will fix this issue as soon as we have the rules.
+#### Back End
+
+To show the lower pentagram we create a vector of numbers, where each number is a Musical Note ID (**giveExercise**). Then, the Front End reads this sequence and displays the Musical Symbols, which have ID equal to the numbers of the sequence.
+
+When the User puts a new Musical Symbol in the upper pentagram (clicks a Musical Note from Choices Box), we read the ID of the chosen Symbol and store it in a vector (**givenAnswer**). This vector will be the user's answer. 
+
+The evaluation process reads the **Rules**, the **givenAnswer** and the **giveExercise** to infer if the given answer is correct.
+
+(check for rules on [src/](/src)).
 
 
-Flow:
-1. In order to create an exercise the algorithm **reads the rules** and **creates** valid sequences of numbers, i.e. a Musical Sequence.
+#### Front End (Qt Graphics)
+We have implemented the **MusicalNoteItem Class**, which inherits from the **QGraphicsPixmapItem Class**. To show the Musical Notes we add the items in QGraphicsScene and visualise it with QGraphicsView. 
 
-1. Then, it chooses which digits to hide, i.e. **hides** some Musical Notes from the created Musical Sequence.
+The **MusicalNoteItem** overrides the **mouserPressEvent** to handle the event when user clicks on a Musical Note from the Choices Box. We overrode this event so as to place the clicked Musical Note to the **upper pentagram**.
 
-1. Finally, the **user is asked** to fill the gaps of the Musical Sequence.
+
+
+
+## Installing
+Clone or download and compile the code.
+
+## Prerequisites
+
+* Qt SDK (Check **Built With** section to see my work environment)
+
+# Usage
+
+1. Press **Create New Exercise**
+1. Choose the right symbols from the **Choices Box**
+1. Press **Check Answer** to check you answer
+1. Create a new exercise and keep solving
+
+
+# Built With 
+* QtCreator IDE 5.9.2 with the MSVC 2015 Kit (on Windows 10)
+
 
 
 
