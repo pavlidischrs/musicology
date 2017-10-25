@@ -6,11 +6,11 @@ Each Musical Symbol in our implementation has an **ID**. Currently we have 10 Mu
 
 #### Back End
 
-To show the lower pentagram we create a vector of numbers, where each number is a Musical Note ID (**giveExercise**). Then, the Front End reads this sequence and displays the Musical Symbols, which have ID equal to the numbers of the sequence.
+To show the lower pentagram we create a vector of numbers, where each number is a Musical Note ID (**givenExercise**). Then, the Front End reads this sequence and displays the Musical Symbols, which have ID equal to the numbers of the sequence.
 
 When the User puts a new Musical Symbol in the upper pentagram (clicks a Musical Note from Choices Box), we read the ID of the chosen Symbol and store it in a vector (**givenAnswer**). This vector will be the user's answer. 
 
-The evaluation process reads the **Rules**, the **givenAnswer** and the **giveExercise** to infer if the given answer is correct.
+The evaluation process reads the **Rules**, the **givenAnswer** and the **givenExercise** to infer if the given answer is correct.
 
 (check for rules on [src/](/src)).
 
