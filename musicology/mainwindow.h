@@ -53,6 +53,8 @@ private slots:
 
     void on_checkAnswerButton_clicked();
 
+    void on_eraseSymbol_clicked();
+
 private:
 
     /**
@@ -79,10 +81,6 @@ private:
     void addNoteToScene(QGraphicsScene* scene, int noteItemID, int x, int y );
 
 
-    /**
-     * @brief checkAnswer: In this method we examine the given answer according to the Rules
-     */
-    void checkAnswer();
 
     /**
      * @brief clearPreviousExercise: clear variables and scene of previous exercise
@@ -118,6 +116,9 @@ private:
 
     // We will store the rules on this var
     map<int, vector<int>> rules_;
+
+    // Object to the Rules Class
+    RulesClass *rulesObject_ ;
 
     Ui::MainWindow *ui;
 };

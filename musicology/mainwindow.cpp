@@ -31,13 +31,15 @@ MainWindow::MainWindow(QWidget *parent) :
     givenAnswer_ = new std::vector<int>;
     givenExercise_ = new std::vector<int>;
 
+    nextPosition_=0;
+
 
     // Rules Class
-    RulesClass *rulesObject = new RulesClass("../musicology/rsc/rules");
+    rulesObject_ = new RulesClass("../musicology/rsc/rules");
 
-    rules_ = rulesObject->getRulesMap();
+    rules_ = rulesObject_->getRulesMap();
 
-    rulesObject->printRules(rules_);
+    rulesObject_->printRules(rules_);
 }
 
 MainWindow::~MainWindow()
@@ -65,7 +67,7 @@ void MainWindow::updateUpperPentagramSLOT(int noteItemID)
     // The user has filled all the pentagram
     // Check her answer and zero the flag_
     if(nextPosition_==sizeOfExercise_){
-        checkAnswer();
+        on_checkAnswerButton_clicked();
         flag_=0;
     }
 
@@ -96,7 +98,7 @@ void MainWindow::addNoteToScene(QGraphicsScene *scene, int noteItemID, int x, in
     // Open the image
     QImage image("../musicology/rsc/" + QString::number(noteItemID) + ".png");
 
-    image = image.scaled(widthOfItems_,heightOfItems_,Qt::IgnoreAspectRatio);
+//    image = image.scaled(widthOfItems_,heightOfItems_,Qt::IgnoreAspectRatio);
 
     // Take pixmap from image
     noteItem->setPixmap(QPixmap::fromImage(image));
@@ -106,54 +108,6 @@ void MainWindow::addNoteToScene(QGraphicsScene *scene, int noteItemID, int x, in
 
     // Add it to the scene
     scene->addItem(noteItem);
-}
-
-void MainWindow::checkAnswer()
-{
-
-    int sizeOfAnswer = givenAnswer_->size();
-
-    if(sizeOfAnswer==0){
-        ui->answerResult->setText("Don't be hurry! Put something first");
-        return;
-    }
-
-    int i=0;
-    for(i=0; i<sizeOfAnswer; i++){
-
-        //pick up the rules of the symbol in the lower pentagram
-        std::vector<int> symbolRules = rules_[givenExercise_->at(i)];
-
-        int numberOfRules = symbolRules.size();
-        int numberOfMismatches = 0;
-        //check if the given symbol in the upper pentagram obeys the rules
-        for(int j=0; j<numberOfRules; j++){
-            if( givenAnswer_->at(i) == symbolRules.at(j) ){
-                break;
-            }
-            else{
-                numberOfMismatches++;
-            }
-        }
-
-        // If the mismatches is equal to the number of rules,
-        // means that your choice does not obey to any of the rules
-        // so your answer is wrong
-        if(numberOfMismatches == numberOfRules){
-            break;
-        }
-
-    }
-
-    // If you have examined all the symbols and are correct
-    // then the i index will be equal to the size of the
-    // sequence (sizeOfExercise_)
-    if(i==sizeOfAnswer){
-        ui->answerResult->setText("Congrats! You are Mozarts's descendant");
-    }
-    else{
-        ui->answerResult->setText("I'm sorry.. Your answer is incorrect :( ");
-    }
 }
 
 // class generator:
@@ -229,5 +183,24 @@ void MainWindow::clearPreviousExercise(){
 
 void MainWindow::on_checkAnswerButton_clicked()
 {
-    checkAnswer();
+    int answer = rulesObject_->checkAnswer(givenAnswer_, givenExercise_);
+
+    if(answer == 1){
+        ui->answerResult->setText("Congrats! You are Mozarts's descendant");
+    }
+    else if(answer == -1){
+        ui->answerResult->setText("I'm sorry.. Your answer is incorrect :( ");
+    }
+    else{
+        ui->answerResult->setText("Don't be hurry! Put something first");;
+    }
+}
+
+void MainWindow::on_eraseSymbol_clicked()
+{
+    if(nextPosition_>0){
+        nextPosition_--;
+        addNoteToScene(systemScene_,  100, nextPosition_*widthOfItems_, 0);
+        givenAnswer_->pop_back();
+    }
 }

@@ -11,6 +11,7 @@
 *.suo
 *.user
 *.pro
+*.svg
 
 #Debug-Release Directories
 
@@ -22,3 +23,4 @@ frontEnd
 musicologyOld/
 build-musicology-Desktop_Qt_5_9_2_MSVC2015_64bit-Debug/
 build-musicology-Desktop_Qt_5_9_2_MSVC2015_64bit-Release/
+musicology/rsc/graphics

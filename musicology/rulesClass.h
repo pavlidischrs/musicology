@@ -45,6 +45,20 @@ public:
 	~RulesClass();
 
 
+    ///
+    /// \brief checkAnswer: In this method method we examine the given answer according to the Rules
+    ///
+    ///                     If it is correct returns True, otherwise False
+    ///
+    ///
+
+
+    ///
+    /// \brief checkAnswer      In this method method we examine the given answer according to the Rules
+    /// \param givenAnswer      The answer which will be examined
+    /// \param givenExercise    The exercise that was given
+    /// \return                 -1 if false, 0 if the user didn't answered, 1 if it's correct
+    int checkAnswer(std::vector<int> *givenAnswer, std::vector<int> *givenExercise );
 
 
 	/// <summary>
