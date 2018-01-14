@@ -28,8 +28,8 @@ signals:
 
 protected:
 
-    // We override the mousePressEvent so as we could click an Musical Note from
-    // the Choices Box
+    // We override the mousePressEvent so as we can click a Musical Note from
+    // the Choices Box.
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 

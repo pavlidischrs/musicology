@@ -20,7 +20,8 @@
 /// 
 /// </summary>
 
-#pragma once
+#ifndef RULESCLASS_H
+#define RULESCLASS_H
 
 #include <cstdio>
 #include <iostream>
@@ -29,11 +30,23 @@
 #include <map>
 #include <vector>
 
+#include <QDebug>
+
+
+enum state {FIRST_POS ,JUMP_OF, SINGLE_STEP};
+enum rulesSource {READ_FROM_FILE, USE_ALGORITHM};
+
 using namespace std;
 
 class RulesClass {
 
 public:
+
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    RulesClass();
 
 	/// <summary>
 	/// The constructor calls the  readRules() method to read the rules.
@@ -54,11 +67,14 @@ public:
 
 
     ///
-    /// \brief checkAnswer      In this method method we examine the given answer according to the Rules
+    /// \brief checkAnswer      In this method method we examine the given answer according to the Rules from the file
     /// \param givenAnswer      The answer which will be examined
     /// \param givenExercise    The exercise that was given
+    /// \param rS               In this parameter we choose whether the rules will be read from a file (default) or we will
+    ///                         use an aglorithmic solution. This misunderstood happens here because we are not sure whether
+    ///                         it is better to write the rules in a file or to create an algorithm.
     /// \return                 -1 if false, 0 if the user didn't answered, 1 if it's correct
-    int checkAnswer(std::vector<int> *givenAnswer, std::vector<int> *givenExercise );
+    int checkAnswer(std::vector<int> *givenAnswer, std::vector<int> *givenExercise, rulesSource source = READ_FROM_FILE );
 
 
 	/// <summary>
@@ -100,4 +116,8 @@ private:
 	// Path for the rules file
 	string pathToRulesFile_;
 
+    //
+    state sequenceState_;
 };
+
+#endif

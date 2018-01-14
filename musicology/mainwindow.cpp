@@ -33,13 +33,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     nextPosition_=0;
 
-
     // Rules Class
-    rulesObject_ = new RulesClass("../musicology/rsc/rules");
+    rulesObject_ = new RulesClass();
 
-    rules_ = rulesObject_->getRulesMap();
-
-    rulesObject_->printRules(rules_);
+    // Display the notes in the Choices Box
+    displayChoices();
 }
 
 MainWindow::~MainWindow()
@@ -95,10 +93,10 @@ void MainWindow::addNoteToScene(QGraphicsScene *scene, int noteItemID, int x, in
 
     connect(noteItem, SIGNAL(updatePentagramSignal(int)), this, SLOT(updateUpperPentagramSLOT(int)));
 
+    // TODO: Change the way that you display image. No need to read every time. Use a static array of images.
+
     // Open the image
     QImage image("../musicology/rsc/" + QString::number(noteItemID) + ".png");
-
-//    image = image.scaled(widthOfItems_,heightOfItems_,Qt::IgnoreAspectRatio);
 
     // Take pixmap from image
     noteItem->setPixmap(QPixmap::fromImage(image));
@@ -120,25 +118,24 @@ struct c_unique {
 void MainWindow::on_newExerciseButton_clicked()
 {
 
-// Step 1: Clear previous exercise (if any)
+    // Clear previous exercise (if any)
     clearPreviousExercise();
 
 
-// Step 2: Create the upper empty pentagram and display it
+    // Create the upper empty pentagram and display it
     for(int i=0; i<sizeOfExercise_; i++){
             addNoteToScene(systemScene_, 100, i*widthOfItems_, 0);
     }
 
 
-// Step 3: Create the lower pentagram and display it
+    // Create the lower pentagram and display it
     // !!!Note we now create the exercise like this so as to be
     // random on each new exercise.
     // When we will have the rules the below procedure will be
-    // substituted to create exercise according to rules
-
+    // substituted and predefined sequences will be used.
     givenExercise_->resize(sizeOfExercise_);
 
-    // Generte a sequence from 0-sizeOfExercise_
+    // Generte a sequence from 0-sizeOfExercise_.
     std::generate (givenExercise_->begin(), givenExercise_->end(), UniqueNumber);
 
     // obtain a time-based seed:
@@ -153,8 +150,6 @@ void MainWindow::on_newExerciseButton_clicked()
         addNoteToScene(systemScene_,  num, pos++*widthOfItems_, heightOfItems_);
     });
 
-// Step 4: Display the Musical Notes choises
-    displayChoices();
 
 }
 
@@ -170,7 +165,7 @@ void MainWindow::clearPreviousExercise(){
     nextPosition_=0;
 
     // Clear the scenes
-    choicesScene_->clear();
+//    choicesScene_->clear();
     systemScene_->clear();
 
     // Empty the give answer vector
@@ -183,7 +178,9 @@ void MainWindow::clearPreviousExercise(){
 
 void MainWindow::on_checkAnswerButton_clicked()
 {
-    int answer = rulesObject_->checkAnswer(givenAnswer_, givenExercise_);
+
+    rulesSource source = USE_ALGORITHM;
+    int answer = rulesObject_->checkAnswer(givenAnswer_, givenExercise_, source);
 
     if(answer == 1){
         ui->answerResult->setText("Congrats! You are Mozarts's descendant");
